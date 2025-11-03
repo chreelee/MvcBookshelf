@@ -1,0 +1,39 @@
+﻿@model MvcBookshelf.Models.StatisticsViewModels.StatisticsViewModel // similar pathing as Razor instead of Enumerable
+@{
+    ViewData["Title"] = "Your Bookshelf Statistics";
+}
+
+<h2>Your Bookshelf Statistics</h2>
+<p>See a summary of how many books, authors, and total pages from your bookshelf.</p>
+<table>
+    <tr>
+        <th>
+            Completed Books
+        </th>
+        <th>
+            Authors
+        </th>
+        <th>
+            Genres
+        </th>
+        <th>
+            Pages Read
+        </th>
+    </tr>
+    <!-- use at-symbol model like Index.cshtml to access the page model for StatisticsViewModel numbers -->
+
+    <tr>
+        <td>
+            @Model.TotalBooks
+        </td>
+        <td>
+            @Model.TotalAuthors
+        </td>
+        <td>
+            @Model.TotalGenres
+        </td>
+        <td>
+            @Model.TotalPages
+        </td>
+    </tr>
+</table>

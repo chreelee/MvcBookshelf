@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MvcBookshelf.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+    var currentFilter = ViewData["CurrentFilter"] as string; // need to add filter and sort of columns
+    var currentSort = ViewData["CurrentSort"] as string;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color"
+    <p>
+        <label>Find by Title or Author: <input type="text" name="SearchString" value="@currentFilter" /></label>
+        <input type="submit" value="Search" class="btn btn-secondary" />
+        <a asp-action="Index">Clear Search</a>
+    </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSort"]">@Html.DisplayNameFor(model => model.Title)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSort"]">@Html.DisplayNameFor(model => model.Author)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSort"]">@Html.DisplayNameFor(model => model.Genre)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]">@Html.DisplayNameFor(model => model.Rating)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PagesSort"]">@Html.DisplayNameFor(model => model.Pages)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pages)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
