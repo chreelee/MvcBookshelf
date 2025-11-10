@@ -1,0 +1,11 @@
+﻿/* css sheet for just the statistics page, using CSS isolation, to add clarity to table
+    https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview?view=aspnetcore-9.0#css-isolation
+*/
+table, th, td {
+    border: 1px solid #BEBEBE;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}

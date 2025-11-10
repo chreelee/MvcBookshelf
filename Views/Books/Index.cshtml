@@ -6,10 +6,11 @@
     var currentSort = ViewData["CurrentSort"] as string;
 }
 
-<h1>Index</h1>
+<h1>Your Bookshelf</h1>
+<p>Browse your bookshelf of completed books and sort by Title, Author, Genre, Rating, and Pages.</p>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add a New Book</a>
 </p>
 
 <form asp-action="Index" method="get">

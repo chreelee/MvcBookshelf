@@ -43,9 +43,6 @@ namespace MvcBookshelf.Controllers
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
 
-            //var books = from b in _books
-            //            select b;
-
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -122,8 +119,6 @@ namespace MvcBookshelf.Controllers
         {
 
             var book = await _books.GetByIdAsync(id);
-            //.AsNoTracking()
-            //.FirstOrDefaultAsync(m => m.ID == id);
             _logger.LogInformation("Fetching details for book ID {BookID}", id);
             return View(book);
         }
@@ -198,9 +193,5 @@ namespace MvcBookshelf.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //private bool BookExists(int id)
-        //{
-        //    return _context.Book.Any(e => e.ID == id);
-        //}
     }
 }
