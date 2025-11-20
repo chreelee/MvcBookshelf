@@ -50,6 +50,7 @@ namespace MvcBookshelf.Controllers
                                 s.Title.ToUpper().Contains(searchString, StringComparison.OrdinalIgnoreCase) || 
                                 s.Author.ToUpper().Contains(searchString, StringComparison.OrdinalIgnoreCase));
                 // adjust to lecture example using ToUpper and contains and StringComparision for any case
+                _logger.LogInformation("Filtering books by string comparison of title or author");
             }
 
             switch (sortOrder)
@@ -103,12 +104,16 @@ namespace MvcBookshelf.Controllers
             var statsViewModel = new StatisticsViewModel();
 
             statsViewModel.TotalBooks = await _books.GetTotalBooksAsync(); // use IBookshelfService
+            _logger.LogInformation("Utilize GetTotalBooksAsync to retrieve TotalBooks");
 
             statsViewModel.TotalAuthors = await _books.GetTotalAuthorsAsync();
+            _logger.LogInformation("Utilize GetTotalAuthorsAsync to retrieve TotalAuthors");
 
             statsViewModel.TotalGenres = await _books.GetTotalGenresAsync();
+            _logger.LogInformation("Utilize GetTotalGenresAsync to retrieve TotalGenres");
 
             statsViewModel.TotalPages = await _books.GetTotalPagesAsync();
+            _logger.LogInformation("Utilize GetTotalPagesAsync to retrieve TotalPages");
 
             return View(statsViewModel);
         }
@@ -143,6 +148,7 @@ namespace MvcBookshelf.Controllers
                 return View(book);
             }
             await _books.AddAsync(book);
+            _logger.LogInformation("CREATE POST new book added");
             return RedirectToAction(nameof(Index));
         }
 
@@ -188,7 +194,7 @@ namespace MvcBookshelf.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
+            _logger.LogInformation("DELETE POST book id {BookID}", id);
             await _books.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }

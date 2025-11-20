@@ -31,8 +31,6 @@ namespace MvcBookshelf
             // https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-9.0&tabs=windows
             var mvcBookshelfSecret = builder.Configuration["MvcBookshelf:ServiceApiKey"];
 
-
-
             var app = builder.Build();
 
             // map into app api endpoint
@@ -41,7 +39,9 @@ namespace MvcBookshelf
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
+                // add logging
+                // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-10.0#log-in-programcs
+                app.Logger.LogInformation("Seeding initial data");
                 SeedData.Initialize(services);
             }
 
@@ -66,8 +66,7 @@ namespace MvcBookshelf
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
-
-
+            app.Logger.LogInformation("Run app");
             app.Run();
         }
     }
