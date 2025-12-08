@@ -11,6 +11,7 @@
         public int TotalAuthors { get; set; }
         public int TotalGenres { get; set; }
         public int TotalPages   { get; set; }
+        public int MostPages { get; set; } // added for stored procedures
 
     }
 }

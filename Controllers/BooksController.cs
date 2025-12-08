@@ -115,6 +115,10 @@ namespace MvcBookshelf.Controllers
             statsViewModel.TotalPages = await _books.GetTotalPagesAsync();
             _logger.LogInformation("Utilize GetTotalPagesAsync to retrieve TotalPages");
 
+            statsViewModel.MostPages = await _books.GetMostPagesAsync();
+            _logger.LogInformation("Utilize GetMostPagesAsync to retrieve MostPages");
+
+
             return View(statsViewModel);
         }
 

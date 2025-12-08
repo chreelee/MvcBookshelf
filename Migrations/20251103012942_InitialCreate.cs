@@ -26,6 +26,16 @@ namespace MvcBookshelf.Migrations
                 {
                     table.PrimaryKey("PK_Book", x => x.ID);
                 });
+
+            // STORED PROCEDURE IN MIGRATION NOT NEEDED. Created separately in database.
+            //// create stored procedure inside the migration
+            //// create or alter so not making so many https://www.reddit.com/r/dotnet/comments/18ya86b/entity_framework_core_managing_stored_procedures/
+            //migrationBuilder.Sql(
+            //    @"CREATE OR ALTER PROCEDURE dbo.GetMostPages2
+            //      AS
+            //      BEGIN
+            //          SELECT MAX(Pages) AS MostPages FROM Book
+            //      END");
         }
 
         /// <inheritdoc />

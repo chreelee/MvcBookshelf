@@ -71,6 +71,22 @@ namespace MvcBookshelf.Services
 
         }
 
+        public async Task<int> GetMostPagesAsync()
+        {
 
+            // cannot use _db.Book.SqlQuery because we want to query for the scalar, non-entity type value of int
+            // accidentally used Book which does not have access to SqlQuery as Database does
+            // https://learn.microsoft.com/en-us/ef/core/querying/sql-queries?tabs=sqlserver#querying-scalar-non-entity-types
+            var query = await _db.Database.SqlQuery<int>($"EXECUTE dbo.GetMostPages") 
+                            .ToListAsync();
+            // set the sql query to execute the stored procedure GetMostPages as a list of int type
+            // query creates an int LIST using SqlQuery of int types and then executes the stored procedure, the
+            // procedure doesn't need to be created in the migration because it's already in the database
+                // STORED PROCEDURE no longer returns the maximum automatically, as it didn't work in the list
+                // Instead, it just gets all of the pages
+
+            return query.Max(); // using Max() return the maximum pages in the result list
+
+        }
     }
 }

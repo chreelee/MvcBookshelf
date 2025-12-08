@@ -17,6 +17,6 @@ namespace MvcBookshelf.Services
         Task<int> GetTotalAuthorsAsync();
         Task<int> GetTotalGenresAsync();
         Task<int> GetTotalPagesAsync();
-
+        Task<int> GetMostPagesAsync(); // added as another for stored procedure
     }
 }

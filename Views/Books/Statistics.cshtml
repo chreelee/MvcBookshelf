@@ -19,6 +19,9 @@
         <th>
             Pages Read
         </th>
+        <th>
+            Highest Page Count
+        </th>
     </tr>
     <!-- use at-symbol model like Index.cshtml to access the page model for StatisticsViewModel numbers -->
 
@@ -34,6 +37,9 @@
         </td>
         <td>
             @Model.TotalPages
+        </td>
+        <td>
+            @Model.MostPages
         </td>
     </tr>
 </table>
